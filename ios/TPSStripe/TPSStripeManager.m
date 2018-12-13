@@ -212,7 +212,8 @@ RCT_EXPORT_METHOD(createTokenWithCard:(NSDictionary *)params
 
         if (error) {
             NSDictionary *jsError = [errorCodes valueForKey:kErrorKeyApi];
-            [self rejectPromiseWithCode:jsError[kErrorKeyCode] message:error.localizedDescription];
+            //[self rejectPromiseWithCode:jsError[kErrorKeyCode] message:error.localizedDescription];
+            reject(jsError[kErrorKeyCode],error.localizedDescription, nil);
         } else {
             resolve([self convertTokenObject:token]);
         }
